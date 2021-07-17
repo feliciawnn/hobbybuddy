@@ -33,6 +33,8 @@ urlpatterns = [
     path('search/', dashboard_view.search_redirect, name='search-redirect'),
     path('dashboard/<slug:keyword>', dashboard_view.search_index, name='search'),
     path('create-activity/', activity_view.create_activity, name='create-activity'),
+    path('save-activity/<int:activity_id>/', activity_view.save_activity, name='save-activity'),
+    path('remove-activity/<int:activity_id>/', activity_view.remove_activity, name='remove-activity'),
     path('activity/<int:activity_id>/', activity_view.activity_details, name='activity-details'),
     path('admin/', admin.site.urls),
 ]

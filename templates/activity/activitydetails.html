@@ -17,6 +17,22 @@
             <h3 class="subtitle">Activity Cost:</h3>
             <p class="activity-cost">{{ cost }}</p>
         </div>
+
+        {% if check %}
+            <form action="{% url 'remove-activity' activity_id=id%}">
+                {% csrf_token %}
+                <div style="text-align: center;">
+                    <input type="submit" value="Remove" id="save">
+                </div>
+            </form>
+        {% else %}
+            <form action="{% url 'save-activity' activity_id=id%}">
+                {% csrf_token %}
+                <div style="text-align: center;">
+                    <input type="submit" value="Save" id="save">
+                </div>
+            </form>
+        {% endif %}
     </div>
     {% endblock %}
 </body>
