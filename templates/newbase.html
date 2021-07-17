@@ -16,23 +16,25 @@
                 <h1>HobbyBuddy</h1>
             </div>
 
-            <div class="col mid">
-                <input type="text" placeholder="Search">
+            <form class="col mid" action="{% url 'search-redirect' %}">
+                <input type="text" placeholder="Search" name="search">
                 <button type="submit" id="submit"><i class="fa fa-search"></i></button>
-            </div>
+            </form>
 
             <div class="col side">
                 <a href="#" class="right-topnav-content"><i class="fas fa-user-circle fa-lg"></i></a>
-                 <a href="#" class="right-topnav-content"><i class="fas fa-plus fa-lg"></i></a>
+                 <a href="/create-activity" class="right-topnav-content"><i class="fas fa-plus fa-lg"></i></a>
                 <a href="#" class="right-topnav-content"><i class="fas fa-heart fa-lg"></i></a>
                 <a href="/dashboard" class="right-topnav-content"><i class="fas fa-home fa-lg"></i></a>
             </div>
         </div>
     </div>
+
     <div class="content">
         {% block content %}
         {% endblock %}
     </div>
+
     </body>
 
 </html>

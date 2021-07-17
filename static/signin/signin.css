@@ -7,15 +7,16 @@ body{
     background-size: 100% auto;
 }
 
-.signup-block{
-    background-color: rgba(255,255,255,0.3);
+.signin-block{
+    background-color: rgba(255, 255, 255, 0.3);
     text-align: center;
     border-radius: 40px;
     max-width: 30%;
     padding: 30px 40px 30px 40px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    transform: translateX(80%);
+    transform: translateX(86%);
 }
+
 p{
     padding-bottom: 20px;
 }
@@ -31,12 +32,15 @@ input {
 
 h1{
     font-size: 26px;
+    color: #FFFFFF;
+    text-align: center;
+    padding-top: 50px;
 }
 
 #create{
     background-color: #FFFFFF;
     padding: 20px;
-    color: rgba(0,0,0, 1);
+    color: rgba(0,0,0,1);
     border: none;
     border-radius: 40px;
     padding: 10px 60px 10px 60px;

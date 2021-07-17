@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-{% extends "newbase.html" %}
-{% load static %}
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% block content %}
-dashboard
+    {% extends "newbase.html" %}
+    {% load static %}
 
-{% for activity in activities %}
-    <a id="box" href="/activity/{{activity.id}}/">
-            <div class = "grid-item">
-                <h2>{{ activity.title }}</h2>
-                <div class="activity-info">
-                    <p>{{ activity.description }}</p>
-                </div>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+
+    <body>
+        {% block content %}
+            <link rel="stylesheet" type="text/css" href="{% static 'dashboard/dashboard.css' %}">
+            <div class="content">
+                {% for activity in activities %}
+                    <div class="box">
+                        <a href="/activity/{{activity.id}}/">
+                            <div class="inside-box">
+                                <h2>{{ activity.title }}</h2>
+                                <div class="pic-container">
+                                    <img src="{{ activity.picture.url }}" class="activity-pic"/>
+                                </div>
+                                <div class="activity-info"><p>{{ activity.description }}</p></div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
             </div>
-        </a>
-{% endfor %}
-
-{% endblock %}
-</body>
+        {% endblock %}
+    </body>
 </html>

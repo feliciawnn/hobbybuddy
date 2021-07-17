@@ -20,13 +20,20 @@ from signup import views as signup_view
 from dashboard import views as dashboard_view
 from signin import views as signin_view
 from activity import views as activity_view
+import static
+from django.contrib.staticfiles.urls import static
+from . import settings
 
 urlpatterns = [
     path('', welcome_view.index, name='welcome'),
     path('signup/', signup_view.index, name='signup'),
     path('signin/', signin_view.index, name='signin'),
     path('dashboard/', dashboard_view.index, name='dashboard'),
+    path('search/', dashboard_view.search_redirect, name='search-redirect'),
+    path('dashboard/<slug:keyword>', dashboard_view.search_index, name='search'),
     path('create-activity/', activity_view.create_activity, name='create-activity'),
     path('activity/<int:activity_id>/', activity_view.activity_details, name='activity-details'),
     path('admin/', admin.site.urls),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
