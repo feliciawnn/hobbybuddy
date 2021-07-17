@@ -23,6 +23,7 @@ from activity import views as activity_view
 import static
 from django.contrib.staticfiles.urls import static
 from . import settings
+from signin import views as signin_views
 
 urlpatterns = [
     path('', welcome_view.index, name='welcome'),

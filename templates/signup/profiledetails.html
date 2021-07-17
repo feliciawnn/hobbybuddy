@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    {{ first }}
-    {{ last }}
-    {{ email }}
-</body>
+    {% extends "newbase.html"%}
+    {% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        {% block content %}
+        <link rel="stylesheet" type="text/css" href="{% static 'profile/profile.css' %}">
+
+        <div class="content">
+                <div class="img-acc"><i class="fas fa-user-circle fa-5x"></i></div>
+                <div class="block-acc">
+                    <h1 class="name">{{ first }} {{ last }}</h1>
+                    <div class="email"><p>{{ email }}</p></div>
+                </div>
+        </div>
+
+        <a href="#" class="quiz prof-button">Retake Preference Quiz</a>
+        <a href="{% url 'signout' %}" class="out prof-button ">Sign Out</a>
+
+        {% endblock %}
+    </body>
 </html>
