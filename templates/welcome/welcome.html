@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'welcome/welcome.css' %}">
     <title>Hobby Buddy</title>
 </head>
 <body>
-    Welcome Page
+    <h1 class="title">Meet Your Personal <br> HobbyBuddy!</h1>
+    <div class="center">
+        <a href="/signin" class="sign-button">Sign In</a>
+        <a href="/signup" class="sign-button">Sign Up</a>
+    </div>
 </body>
 </html>
