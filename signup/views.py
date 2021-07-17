@@ -9,7 +9,7 @@ def index(request):
         signupform = forms.SignUpForm(data=request.POST)
         if signupform.is_valid():
             signupform.save()
-            return redirect("/dashboard")
+            return redirect("/signin")
         context['signupform'] = signupform
         return render(request, "signup/signuppage.html", context)
     else:
