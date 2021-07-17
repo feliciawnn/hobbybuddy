@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+    {% extends "newbase.html" %}
+    {% load static %}
 <head>
     <meta charset="UTF-8">
     <title>Activity Details</title>
 </head>
 <body>
-{{ title }}
-{{ description }}
-{{ picture }}
-{{ cost }}
+    {% block content %}
+    <div class="block">
+        <link rel="stylesheet" type="text/css" href="{% static 'activity/activitydetails.css' %}">
+        <div class="center"><h1 class="activity-title">{{ title }}</h1></div>
+        <div class="pic"><img src="{{ picture.url }}" class="activity-pic"/></div>
+        <div class = "texts">
+            <p class="activity-desc">{{ description }}</p>
+            <h3 class="subtitle">Activity Cost:</h3>
+            <p class="activity-cost">{{ cost }}</p>
+        </div>
+    </div>
+    {% endblock %}
 </body>
 </html>
