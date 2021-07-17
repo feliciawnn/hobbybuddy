@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'newbase/newbase.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    </head>
+
+    <body>
+    <div class="navbar">
+        <div class="row">
+            <div class="col side">
+                <h1>HobbyBuddy</h1>
+            </div>
+
+            <div class="col mid">
+                <input type="text" placeholder="Search">
+                <button type="submit" id="submit"><i class="fa fa-search"></i></button>
+            </div>
+
+            <div class="col side">
+                <a href="#" class="right-topnav-content"><i class="fas fa-user-circle fa-lg"></i></a>
+                 <a href="#" class="right-topnav-content"><i class="fas fa-plus fa-lg"></i></a>
+                <a href="#" class="right-topnav-content"><i class="fas fa-heart fa-lg"></i></a>
+                <a href="/dashboard" class="right-topnav-content"><i class="fas fa-home fa-lg"></i></a>
+            </div>
+        </div>
+    </div>
+    </body>
+
+</html>
