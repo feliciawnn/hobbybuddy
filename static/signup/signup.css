@@ -19,10 +19,10 @@ p{
 }
 
 input {
-	background-color: #eee;
 	border: none;
 	padding-top: 12px;
     padding-bottom: 12px;
+    padding-left: 10px;
     margin-right: 5px;
 	width: 50%;
     border-radius: 8px;

@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+{% extends "newbase.html" %}
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+{% block content %}
 dashboard
-{{ first }} {{ last }}
+
+{% for activity in activities %}
+    <a id="box" href="/activity/{{activity.id}}/">
+            <div class = "grid-item">
+                <h2>{{ activity.title }}</h2>
+                <div class="activity-info">
+                    <p>{{ activity.description }}</p>
+                </div>
+            </div>
+        </a>
+{% endfor %}
+
+{% endblock %}
 </body>
 </html>
