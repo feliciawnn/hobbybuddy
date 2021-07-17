@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+</head>
+<body>
+    <div>
+        <form action="{% url 'signup' %}" method="post">
+            {% csrf_token %}
+            {% for field in signupform %}
+                <p>
+                    <b id="field">{{field.label}} : </b><br>
+                    <span>{{field}}</span>
+                    {% for error in field.errors %}
+                        <p style="color: red; font-size: 10px">{{ error }}</p>
+                    {% endfor %}
+                </p>
+            {% endfor %}
+            <div style="text-align: center;">
+                <input type="submit" value="Create" id="create">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
