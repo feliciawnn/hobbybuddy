@@ -27,6 +27,7 @@ from . import settings
 urlpatterns = [
     path('', welcome_view.index, name='welcome'),
     path('signup/', signup_view.index, name='signup'),
+    path('profile-details/', signup_view.profile_details, name='profile'),
     path('signin/', signin_view.index, name='signin'),
     path('dashboard/', dashboard_view.index, name='dashboard'),
     path('search/', dashboard_view.search_redirect, name='search-redirect'),

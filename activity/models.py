@@ -8,3 +8,5 @@ class Activity(models.Model):
     picture = models.ImageField(upload_to='activity_media')
     description = models.TextField()
     cost_estimation = models.PositiveIntegerField()
+    def __str__(self):
+        return self.title

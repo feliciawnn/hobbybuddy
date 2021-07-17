@@ -16,3 +16,11 @@ def index(request):
         context['signupform'] = forms.SignUpForm()
     return render(request, "signup/signuppage.html", context)
 
+
+def profile_details(request):
+    user = request.user
+    context = {}
+    context['first'] = user.first_name
+    context['last'] = user.last_name
+    context['email'] = user.email
+    return render(request, 'signup/profiledetails.html', context)
