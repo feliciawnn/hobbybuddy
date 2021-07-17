@@ -4,6 +4,7 @@ from .models import Activity
 
 class NewActivityForm(forms.ModelForm):
     title = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Title'}))
+    indoor = forms.BooleanField(required=True)
     description = forms.CharField(required=True, max_length=200,
                                   widget=forms.Textarea(attrs={'placeholder': 'Activity Description'}))
     cost_estimation = forms.IntegerField(required=True)
