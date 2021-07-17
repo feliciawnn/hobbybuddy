@@ -37,6 +37,7 @@ urlpatterns = [
     path('save-activity/<int:activity_id>/', activity_view.save_activity, name='save-activity'),
     path('remove-activity/<int:activity_id>/', activity_view.remove_activity, name='remove-activity'),
     path('activity/<int:activity_id>/', activity_view.activity_details, name='activity-details'),
+    path('signout/', signin_views.signout, name='signout'),
     path('admin/', admin.site.urls),
 ]
 
