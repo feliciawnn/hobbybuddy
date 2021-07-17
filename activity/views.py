@@ -45,3 +45,13 @@ def remove_activity(request, activity_id):
     act = Activity.objects.get(pk=activity_id)
     UserActivity.objects.filter(activity=act, user=request.user).delete()
     return redirect("/activity/" + str(activity_id))
+
+
+def saved_activity(request):
+    saved = UserActivity.objects.filter(user=request.user)
+    activities = []
+    for ua in saved:
+        act = Activity.objects.get(pk=ua.activity.pk)
+        activities.append(act)
+    context = {'acts': activities}
+    return render(request, "activity/savedactivity.html", context)
