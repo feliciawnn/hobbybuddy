@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Activity Details</title>
 </head>
-<body>
+<>
     {% block content %}
     <div class="block">
         <link rel="stylesheet" type="text/css" href="{% static 'activity/activitydetails.css' %}">
@@ -21,15 +21,19 @@
         {% if check %}
             <form action="{% url 'remove-activity' activity_id=id%}">
                 {% csrf_token %}
-                <div style="text-align: center;">
-                    <input type="submit" value="Remove" id="save">
+                <div class="button-save">
+                        <button type="submit" class="heart remove" style="background-colour: #D3D3D3;"> Remove Activity
+                        <i class="fas fa-heart fa-lg remove-heart"></i>
+                        </button>
                 </div>
             </form>
         {% else %}
             <form action="{% url 'save-activity' activity_id=id%}">
                 {% csrf_token %}
-                <div style="text-align: center;">
-                    <input type="submit" value="Save" id="save">
+                <div class="button-save">
+                        <button type="submit" class="heart adds"> Add Activity
+                        <i class="fas fa-heart fa-lg add-heart"></i>
+                        </button>
                 </div>
             </form>
         {% endif %}
