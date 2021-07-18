@@ -9,6 +9,8 @@ from django.db import IntegrityError
 # Create your views here.
 @login_required(login_url="/")
 def create_activity(request):
+    if not request.user.is_staff:
+        return redirect('/dashboard')
     context = {}
     categories = Category.objects.all()
     if request.method == "POST":
@@ -57,7 +59,10 @@ def activity_details(request, activity_id):
         'check': check,
     }
 
-    categories = ActivityCategory.objects.filter(activity=act)
+    cat = ActivityCategory.objects.filter(activity=act)
+    categories = []
+    for category in cat:
+        categories.append(category.category)
     context['categories'] = categories
     return render(request, "activity/activitydetails.html", context)
 
