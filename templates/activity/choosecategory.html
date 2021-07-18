@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-    <form action="{% url 'choose-category' %}" method="post">
+    <form action="{% url 'choose-category' %}" method="post" name="choose-category">
         {% csrf_token %}
         {% for field in form %}
             <p>

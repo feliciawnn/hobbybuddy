@@ -3,6 +3,7 @@ from .forms import NewActivityForm, NewCategoryForm, CategoryChooser
 from .models import Activity, Category, UserCategory
 from signup.models import UserActivity
 from django.contrib.auth.decorators import login_required
+from django.db import IntegrityError
 
 
 # Create your views here.
@@ -85,7 +86,27 @@ def choose_category(request):
 
     if request.method == "POST":
         if form.is_valid():
-            for cat, answer in form.categories_answer():
-                print(cat, answer)
+            first = Category.objects.first().pk
+            i = 0
+            count = 0
+            while count < len(form.cleaned_data):
+                try:
+                    cat = Category.objects.get(pk=i + first)
+                    check = form.cleaned_data['cat%s' % count]
+                    cc = UserCategory(user=request.user, category=cat)
+                    try:
+                        if check:
+                            cc.save()
+                        else:
+                            search = UserCategory.objects.filter(user=request.user, category=cat)
+                            if len(search) > 0:
+                                search.delete()
 
+                    except IntegrityError:
+                        pass
+                    count += 1
+                except KeyError:
+                    pass
+                i += 1
+        return redirect("/dashboard")
     return render(request, "activity/choosecategory.html", {"form": form})

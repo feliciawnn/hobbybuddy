@@ -25,5 +25,9 @@ class UserCategory(models.Model):
     user = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, default=None, on_delete=models.CASCADE)
 
+    class Meta:
+        verbose_name = "User Category"
+        constraints = [models.UniqueConstraint(fields = ['user', 'category'], name = "unique user category")]
+
     def __str__(self):
         return str(self.user) + '-' + str(self.category)
