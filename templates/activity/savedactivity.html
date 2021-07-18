@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+{% extends "newbase.html" %}
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+    {% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'activity/savedactivity.css' %}">
+
+
+    <div class="container">
+    <h1 id="temp">Your Favourite Activities</h1>
+    <div class="grid-container">
     {% for act in acts %}
-    {{ act }}
+
+        <a id="box" href="{% url 'activity-details' activity_id=act.id %}">
+            <div class = "grid-item">
+                <h2 class="fav-title">{{ act.title }}</h2>
+                <div class="project-info">
+                    <p class="fav-text">{{ act.description }}</p>
+                </div>
+            </div>
+        </a>
+
     {% endfor %}
+    </div>
+
+    </div>
+
+    {% endblock %}
 </body>
 </html>
