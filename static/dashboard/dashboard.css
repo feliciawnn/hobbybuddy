@@ -39,3 +39,7 @@ body{
     display: block;
 
 }
+
+.activity-info{
+    text-align: justify;
+}
