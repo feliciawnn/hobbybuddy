@@ -21,7 +21,7 @@ def create_activity(request):
             first = Category.objects.first().pk
             i = 0
             count = 0
-            while count < len(form.cleaned_data):
+            while count < len(category_form.cleaned_data):
                 try:
                     cat = Category.objects.get(pk=i + first)
                     check = category_form.cleaned_data['cat%s' % count]
@@ -35,7 +35,7 @@ def create_activity(request):
                 except KeyError:
                     pass
                 i += 1
-            return redirect("/dashboard")
+            return redirect("/restricted/create-activity")
         else:
             context['form'] = form
             context['categorychoose'] = category_form
@@ -101,7 +101,7 @@ def create_category(request):
             form = NewCategoryForm(data=request.POST)
             if form.is_valid():
                 form.save()
-                return redirect("/dashboard")
+                return redirect("/restricted/create-category")
             return render(request, "activity/createcategory.html", {"form": form})
         return render(request, "activity/createcategory.html", {"form": NewCategoryForm()})
     else:
