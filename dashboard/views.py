@@ -17,6 +17,9 @@ def index(request):
     for pa in preferred_activity:
         activities.append(pa.activity)
     context['activities'] = activities
+
+    if len(activities) == 0:
+        context['activities'] = Activity.objects.all()
     return render(request, "dashboard/dashboard.html", context)
 
 
