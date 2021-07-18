@@ -20,21 +20,45 @@ Therefore, with the facts stated above in mind, we wanted to create a safe way f
 - Pillow
 - Django
 
-## Installation
-1. Python and Pip installed is required
-2. python -m pip install --upgrade pip
-3. pip install django
-4. pip install pillow
-   
-## Run
-1. python manage.py runserver
-2. Open Browser 127.0.0.1:8000
+## Run on Windows   
+### Run Method 1
+1. Open command prompt in the directory
+2. venv\Scripts\activate (this will run the virtual environment venv)
+3. python manage.py runserver
+4. Open Browser 127.0.0.1:8000
 
-## Django Admin
+### Run Method 2
+1. Open command prompt in the directory
+2. pip install virtualenv
+3. virtualenv hobbybuddyenv (this will create a new virtual environment hobbybuddyenv)
+4. hobbybuddyenv\Scripts\activate (this will run the virtual environment hobbybuddyenv)
+5. python -m pip install --upgrade pip
+6. pip install django
+7. pip install pillow
+8. python3 manage.py runserver
+9. Open Browser 127.0.0.1:8000
+
+## Run on Mac (Python and Pip Required)
+1. Open terminal in the directory
+2. pip install virtualenv
+3. virtualenv hobbybuddyenv (this will create a new virtual environment hobbybuddyenv)
+4. source hobbybuddyenv\bin\activate (this will run the virtual environment hobbybuddyenv)
+5. python -m pip install --upgrade pip
+6. pip install django
+7. pip install pillow
+8. python manage.py runserver
+9. Open Browser 127.0.0.1:8000
+
+## Django Admin to Acces Database
+- Access through 127.0.0.1:8000/admin
 - Username: admin
 - Password: admin
 
+## Create New Activity and Category
+1. Login as Admin
+2. Go to 127.0.0.1:8000/restricted/create-activity (create new activity) or 127.0.0.1:8000/create-category (create new category)
+
 # The FEMTECH TEAM
-####1. Michael Shane
-####2. Eduardus Bagaskara
-####3. Felicia Winna
+1. Michael Shane
+2. Eduardus Bagaskara
+3. Felicia Winna
