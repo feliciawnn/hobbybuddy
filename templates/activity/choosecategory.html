@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+{% extends "newbase.html" %}
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+    {% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'category/choosecategory.css' %}">
     <form action="{% url 'choose-category' %}" method="post" name="choose-category">
         {% csrf_token %}
         {% for field in form %}
@@ -20,5 +24,6 @@
             <input type="submit" value="Done" id="done">
         </div>
     </form>
+    {% endblock %}
 </body>
 </html>
