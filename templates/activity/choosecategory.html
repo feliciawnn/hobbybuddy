@@ -10,17 +10,33 @@
     {% block content %}
     <link rel="stylesheet" type="text/css" href="{% static 'category/choosecategory.css' %}">
     <form action="{% url 'choose-category' %}" method="post" name="choose-category">
-        {% csrf_token %}
-        {% for field in form %}
-            <p>
-                <b id="field">{{field.label}} : </b><br>
-                <span>{{field}}</span>
-                {% for error in field.errors %}
-                    <p style="color: red; font-size: 10px">{{ error }}</p>
-                {% endfor %}
-            </p>
-        {% endfor %}
-        <div style="text-align: center;">
+
+        <div class="wrapper">
+          <div class="title">
+            Choose your favorite categories below
+          </div>
+
+          <div class="container">
+              {% csrf_token %}
+              {% for field in form %}
+              <label class="option_item">
+                  <div class="option_inner facebook">
+                  {{field}}
+                  <input type="checkbox" class="checkbox">
+                      <div class="tickmark"></div>
+                    <div class="name">{{field.label}}</div>
+                  </div>
+            </label>
+              {% endfor %}
+          </div>
+
+            <div class="subtitle">
+                  <h3>Please note that each time you retake this quiz, your previous preference is completely cleared</h3>
+            </div>
+        </div>
+
+
+        <div class="done-button">
             <input type="submit" value="Done" id="done">
         </div>
     </form>
