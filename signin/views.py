@@ -18,6 +18,7 @@ def index(request):
         context['signinform'] = forms.SignInForm()
     return render(request, "signin/signin.html", context)
 
+
 def signout(response):
     logout(response)
     return redirect("/")

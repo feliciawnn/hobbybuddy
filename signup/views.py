@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from . import forms
 
@@ -17,6 +18,7 @@ def index(request):
     return render(request, "signup/signuppage.html", context)
 
 
+@login_required(login_url="/")
 def profile_details(request):
     user = request.user
     context = {}

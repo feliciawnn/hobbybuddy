@@ -39,6 +39,8 @@ urlpatterns = [
     path('activity/<int:activity_id>/', activity_view.activity_details, name='activity-details'),
     path('saved-activity/', activity_view.saved_activity, name='saved-activity'),
     path('signout/', signin_views.signout, name='signout'),
+    path('restricted/create-category/', activity_view.create_category, name='create-category'),
+    path('choose-category/', activity_view.choose_category, name='choose-category'),
     path('admin/', admin.site.urls),
 ]
 

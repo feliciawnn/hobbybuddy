@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
-from .forms import NewActivityForm
-from .models import Activity
+from .forms import NewActivityForm, NewCategoryForm, CategoryChooser
+from .models import Activity, Category, UserCategory
 from signup.models import UserActivity
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+@login_required(login_url="/")
 def create_activity(request):
     context = {}
     if request.method == "POST":
@@ -20,6 +22,7 @@ def create_activity(request):
     return render(request, "activity/createactivity.html", context)
 
 
+@login_required(login_url="/")
 def activity_details(request, activity_id):
     act = Activity.objects.get(pk=activity_id)
     check = UserActivity.objects.filter(user=request.user, activity=act).count() > 0
@@ -34,6 +37,7 @@ def activity_details(request, activity_id):
     return render(request, "activity/activitydetails.html", context)
 
 
+@login_required(login_url="/")
 def save_activity(request, activity_id):
     act = Activity.objects.get(pk=activity_id)
     sa = UserActivity(user=request.user, activity=act)
@@ -41,12 +45,14 @@ def save_activity(request, activity_id):
     return redirect("/activity/" + str(activity_id))
 
 
+@login_required(login_url="/")
 def remove_activity(request, activity_id):
     act = Activity.objects.get(pk=activity_id)
     UserActivity.objects.filter(activity=act, user=request.user).delete()
     return redirect("/activity/" + str(activity_id))
 
 
+@login_required(login_url="/")
 def saved_activity(request):
     saved = UserActivity.objects.filter(user=request.user)
     activities = []
@@ -55,3 +61,31 @@ def saved_activity(request):
         activities.append(act)
     context = {'acts': activities}
     return render(request, "activity/savedactivity.html", context)
+
+
+@login_required(login_url="/")
+def create_category(request):
+    user = request.user
+    if user.is_staff:
+        if request.method == "POST":
+            form = NewCategoryForm(data=request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect("/dashboard")
+            return render(request, "activity/createcategory.html", {"form": form})
+        return render(request, "activity/createcategory.html", {"form": NewCategoryForm()})
+    else:
+        return redirect("/dashboard")
+
+
+@login_required(login_url="/")
+def choose_category(request):
+    categories = Category.objects.all()
+    form = CategoryChooser(request.POST, categories=categories)
+
+    if request.method == "POST":
+        if form.is_valid():
+            for cat, answer in form.categories_answer():
+                print(cat, answer)
+
+    return render(request, "activity/choosecategory.html", {"form": form})
