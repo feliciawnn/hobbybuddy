@@ -8,12 +8,22 @@
 </head>
 <>
     {% block content %}
+
     <div class="block">
         <link rel="stylesheet" type="text/css" href="{% static 'activity/activitydetails.css' %}">
         <div class="center"><h1 class="activity-title">{{ title }}</h1></div>
         <div class="pic"><img src="{{ picture.url }}" class="activity-pic"/></div>
+
+        <div class="ctg-container" style="margin-left: 100px;">
+        {% for category in categories %}
+        <p class="ctg" style="display: inline-block; background-color: #2ec4b6; padding: 10px; border-radius: 40px; margin-bottom: 0px;">
+            {{ category }}
+        </p>
+        {% endfor %}
+        </div>
+
         <div class = "texts">
-            <p class="activity-desc">{{ description }}</p>
+            <p class="activity-desc" style="margin-top: 0px; margin-bottom: 50px;">{{ description }}</p>
             <h3 class="subtitle">Activity Cost:</h3>
             <p class="activity-cost">{{ cost }}</p>
         </div>
@@ -37,10 +47,6 @@
                 </div>
             </form>
         {% endif %}
-
-        {% for category in categories %}
-            {{ category }}
-        {% endfor %}
     </div>
     {% endblock %}
 </body>
