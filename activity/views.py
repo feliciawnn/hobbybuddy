@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import NewActivityForm, NewCategoryForm, CategoryChooser
-from .models import Activity, Category, UserCategory
+from .forms import NewActivityForm, NewCategoryForm, CategoryChooser, ActivityCategoryForm
+from .models import Activity, Category, UserCategory, ActivityCategory
 from signup.models import UserActivity
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
@@ -10,16 +10,37 @@ from django.db import IntegrityError
 @login_required(login_url="/")
 def create_activity(request):
     context = {}
+    categories = Category.objects.all()
     if request.method == "POST":
         form = NewActivityForm(data=request.POST, files=request.FILES)
-        if form.is_valid():
-            form.save()
+        category_form = ActivityCategoryForm(data=request.POST, categories=categories)
+        if form.is_valid() and category_form.is_valid():
+            act = form.save()
+            first = Category.objects.first().pk
+            i = 0
+            count = 0
+            while count < len(form.cleaned_data):
+                try:
+                    cat = Category.objects.get(pk=i + first)
+                    check = category_form.cleaned_data['cat%s' % count]
+                    cc = ActivityCategory(activity=act, category=cat)
+                    try:
+                        if check:
+                            cc.save()
+                    except IntegrityError:
+                        pass
+                    count += 1
+                except KeyError:
+                    pass
+                i += 1
             return redirect("/dashboard")
         else:
             context['form'] = form
+            context['categorychoose'] = category_form
             return render(request, "activity/createactivity.html", context)
 
     context['form'] = NewActivityForm()
+    context['categorychoose'] = ActivityCategoryForm(categories=categories)
     return render(request, "activity/createactivity.html", context)
 
 
@@ -35,6 +56,9 @@ def activity_details(request, activity_id):
         'id': activity_id,
         'check': check,
     }
+
+    categories = ActivityCategory.objects.filter(activity=act)
+    context['categories'] = categories
     return render(request, "activity/activitydetails.html", context)
 
 

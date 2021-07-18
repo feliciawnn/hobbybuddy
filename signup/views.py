@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
 from . import forms
 
 
@@ -10,7 +11,10 @@ def index(request):
         signupform = forms.SignUpForm(data=request.POST)
         if signupform.is_valid():
             signupform.save()
-            return redirect("/signin")
+            user = authenticate(username=signupform.cleaned_data['username'],
+                                password=signupform.cleaned_data['password1'])
+            login(request, user)
+            return redirect("/choose-category")
         context['signupform'] = signupform
         return render(request, "signup/signuppage.html", context)
     else:

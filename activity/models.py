@@ -31,3 +31,15 @@ class UserCategory(models.Model):
 
     def __str__(self):
         return str(self.user) + '-' + str(self.category)
+
+
+class ActivityCategory(models.Model):
+    activity = models.ForeignKey(Activity, default=None, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, default=None, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Activity Category"
+        constraints = [models.UniqueConstraint(fields = ['activity', 'category'], name = "unique activity category")]
+
+    def __str__(self):
+        return str(self.activity) + '-' + str(self.category)

@@ -37,6 +37,10 @@
                 </div>
             </form>
         {% endif %}
+
+        {% for category in categories %}
+            {{ category }}
+        {% endfor %}
     </div>
     {% endblock %}
 </body>

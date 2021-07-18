@@ -30,8 +30,11 @@ class CategoryChooser(forms.Form):
         for i, category in enumerate(categories):
             self.fields["cat%s"%i] = forms.BooleanField(label=category, required=False)
 
-    def categories_answer(self):
-        first = Category.objects.first().pk
-        for name, value in self.cleaned_data.items():
-            if name.startswith('cat_'):
-                yield self.fields[name].label, value
+
+class ActivityCategoryForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        categories = kwargs.pop('categories')
+        super(ActivityCategoryForm, self).__init__(*args, **kwargs)
+
+        for i, category in enumerate(categories):
+            self.fields["cat%s" % i] = forms.BooleanField(label=category, required=False)
