@@ -15,7 +15,7 @@ body{
 }
 
 .sign-button{
-    background-color: #ff9f1c;
+    background-color: #2EC4B6;
     padding: 20px 40px 20px 40px;
     margin: 2%;
     border-radius: 1000px;
@@ -24,7 +24,8 @@ body{
 }
 
 .sign-button:hover{
-    background-color: #ffbf69;
+    background-color: #CBF3F0;
+    color: rgba(0,0,0,1);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
